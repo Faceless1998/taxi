@@ -1,33 +1,35 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
+// Initial State
 const initialState = {
-  origin: null,
-  destination: null,
-  travelTimeInformation: null,
+    origin: null,
+    destination: null,
+    travelTimeInformation: null,
 };
 
+
+// Slice to store Origin, Destination and calculated Travel Time reducers
 export const navSlice = createSlice({
-  name: "nav",
-  initialState,
-  reducer: {
-    setOrigin: (state, action) => {
-      state.origin = action.payload;
+    name: 'nav',
+    initialState,
+    reducers: {
+        setOrigin: (state, action) => {
+            state.origin = action.payload;
+        },
+        setDestination: (state, action) => {
+            state.destination = action.payload;
+        },
+        setTravelTimeInformation: (state, action) => {
+            state.travelTimeInformation = action.payload;
+        },
     },
-    setDestination: (state, action) => {
-      state.destination = action.payload;
-    },
-    setTravelTimeInformation: (state, action) => {
-      state.travelTimeInformation = action.payload;
-    },
-  },
 });
 
-export const { setOrigin, setDestination, setTravelTimeInformation } =
-  navSlice.actions;
+export const { setOrigin, setDestination, setTravelTimeInformation } = navSlice.actions;
 
+//Selectors
 export const selectOrigin = (state) => state.nav.origin;
 export const selectDestination = (state) => state.nav.destination;
-export const selectTravelTimeInformation = (state) =>
-  state.nav.travelTimeInformation;
+export const selectTravelTimeInformation = (state) => state.nav.travelTimeInformation;
 
-export default navSlice.reducer; 
+export default navSlice.reducer;
